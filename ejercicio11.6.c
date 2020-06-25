@@ -46,7 +46,7 @@ int main(){
 }
 
 int cargarVisitantes(Visitante v[]){
-
+    system("clear");
     Visitante aux;
     int i=0;
 

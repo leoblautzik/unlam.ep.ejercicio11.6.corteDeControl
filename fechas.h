@@ -93,7 +93,7 @@ void sumarNdias(int n,Fecha fecha)
 int esFechaValida(Fecha fecha)
 {
     int esValida=0;
-
+    if(fecha.anio>=1900 && fecha.anio<=2100)
     if(fecha.mes>=1 && fecha.mes<=12)
         if(fecha.dia>=1 && fecha.dia<=diasMes(fecha.mes,fecha.anio))
             esValida=1;
