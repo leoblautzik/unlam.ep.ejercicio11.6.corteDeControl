@@ -13,7 +13,7 @@ typedef struct{
 }Visitante;
 
 int main(){
-    int tam=500;
+    int tam=98;
     Visitante aux;
     char auxApenom[36] = "ApellidoYNombre   ";
     int auxDNI=30000000;

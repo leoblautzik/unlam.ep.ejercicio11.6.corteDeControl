@@ -34,14 +34,18 @@ int leerArchivoVisitantes(Visitante []);
 void generarLocalidades();
 
 int main(){
+
     int cantidadVisitantes=0;
     Visitante visitantes[500];
-    cantidadVisitantes=cargarVisitantes(visitantes);
+
+//    cantidadVisitantes=cargarVisitantes(visitantes);
+    cantidadVisitantes= leerArchivoVisitantes(visitantes);
     ordenarVisitantes(visitantes,cantidadVisitantes);
     escribirArchivoVisitantes(visitantes,cantidadVisitantes);
-    cantidadVisitantes= leerArchivoVisitantes(visitantes);
-    mostrarVisitantes(visitantes,cantidadVisitantes);
+//    cantidadVisitantes= leerArchivoVisitantes(visitantes);
+//    mostrarVisitantes(visitantes,cantidadVisitantes);
     generarLocalidades();
+
     return 0;
 }
 
@@ -147,6 +151,7 @@ int leerArchivoVisitantes(Visitante v[]){
 void generarLocalidades(){
 
     int i=0;
+    int cantVisLoc=0;
     Visitante aux;
     char auxLocalidad[41],nomArchivo[45];
     FILE *fwL, *fp;
@@ -162,7 +167,7 @@ void generarLocalidades(){
         strcpy(auxLocalidad,aux.localidad);
         strcpy(nomArchivo,aux.localidad);
         strcat(nomArchivo, ".dat");
-
+        cantVisLoc=0;
         if ( ( fwL= fopen(nomArchivo, "wb")) == NULL )
         {
             printf("No se puede abrir.\n");
@@ -170,9 +175,12 @@ void generarLocalidades(){
         }
 
         while (strcmp(aux.localidad,auxLocalidad)==0 && !feof (fp) ){
+            cantVisLoc++;
             fwrite(&aux,sizeof(Visitante),1,fwL);
             fread(&aux, sizeof(Visitante),1,fp);
         }
+        printf("%s  %d visitantes\n", auxLocalidad,cantVisLoc);
+
         fclose(fwL);
     }
     fclose(fp);
